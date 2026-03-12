@@ -1,4 +1,5 @@
 import {Purchase} from "./purchase/Purchase.tsx";
+import {FilterType} from "../../App.tsx";
 
 export type PurchaseType = {
     id: string
@@ -11,9 +12,10 @@ type PurchaseListPropsType = {
     title: string
     purchases: Array<PurchaseType>
     removePurchase: (purchaseId: string) => void
+    changeFilter: (filter: FilterType) => void
 }
 
-export const PurchaseList = ({title, purchases, removePurchase}: PurchaseListPropsType) => {
+export const PurchaseList = ({title, purchases, removePurchase, changeFilter}: PurchaseListPropsType) => {
     const purchasesList = purchases.length
         ? <ul>
             {purchases.map(p => (
@@ -31,9 +33,9 @@ export const PurchaseList = ({title, purchases, removePurchase}: PurchaseListPro
             </div>
             {purchasesList}
             <div>
-                <button>All</button>
-                <button>Unbought</button>
-                <button>Bought</button>
+                <button onClick={() => changeFilter("all")}>All</button>
+                <button onClick={() => changeFilter("unbought")}>Unbought</button>
+                <button onClick={() => changeFilter("bought")}>Bought</button>
             </div>
         </div>
     );
