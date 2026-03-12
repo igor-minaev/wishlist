@@ -4,6 +4,9 @@ import bread from "./assets/images/bread.jpg"
 import cheese from "./assets/images/cheese.jpg"
 import fish from "./assets/images/fish.webp"
 import tomatoes from "./assets/images/tomatoes.jpg"
+import {PurchaseList, PurchaseType} from "./components/purchaselist/PurchaseList.tsx";
+import {useState} from "react";
+
 
 const purchases = [
     {id: crypto.randomUUID(), title: "Milk", isDone: true, src: milk},
@@ -13,33 +16,17 @@ const purchases = [
     {id: crypto.randomUUID(), title: "Tomatoes", isDone: true, src: tomatoes}
 ]
 
-function App() {
+const purchaseListTitle = "What to buy"
 
+function App() {
+    const [purchasesList, setpurchasesList] = useState<Array<PurchaseType>>(purchases)
+
+    const removePurchase = (purchaseId: string) => {
+        setpurchasesList(purchasesList.filter(p => p.id !== purchaseId))
+    }
     return (
         <div className="app">
-            <div>
-                <h3>What to learn</h3>
-                <div>
-                    <input/>
-                    <button>+</button>
-                </div>
-                <ul>
-                    <li>
-                        <input type="checkbox" checked={true}/> <span>HTML&CSS</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" checked={true}/> <span>JS</span>
-                    </li>
-                    <li>
-                        <input type="checkbox" checked={false}/> <span>React</span>
-                    </li>
-                </ul>
-                <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
-                </div>
-            </div>
+            <PurchaseList title={purchaseListTitle} purchases={purchasesList} removePurchase={removePurchase}/>
         </div>
     )
 }
