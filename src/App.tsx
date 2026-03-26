@@ -1,10 +1,11 @@
 import './App.css'
-import {use, useState} from "react";
+import {useState} from "react";
+import {Todolist} from "./Todolist.tsx";
 
 export type PriorityType = 'Low' | 'Medium' | 'High' | 'All'
 export type FilterType = 'All' | 'Active' | 'Completed'
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     description: string
@@ -45,22 +46,7 @@ function App() {
     const filteredTasks = filterTasks(tasks, filter, priority)
     return (
         <div className="app">
-            <div>
-                <h3>What to learn</h3>
-                <div>
-                    <input/>
-                    <button>+</button>
-                </div>
-                <div>
-                    <label htmlFor="priority">Task's priority</label>
-                    <select id='priority'>
-                        <option value="All">All</option>
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                    </select>
-                </div>
-            </div>
+            <Todolist title='What to learn' tasks={filteredTasks}/>
         </div>
     )
 }
