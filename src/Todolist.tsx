@@ -1,13 +1,15 @@
-import {FilterType, TaskType} from "./types/types.ts";
+import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 import {Task} from "./Task.tsx";
+import {ChangeEvent} from "react";
 
 type TodolistPropsType = {
     title: string
     tasks: TaskType[]
     removeTask: (taskId: string) => void
     changeFilter: (filter: FilterType) => void
+    changePriority: (priority: PriorityType) => void
 }
-export const Todolist = ({title, tasks, removeTask, changeFilter}: TodolistPropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority}: TodolistPropsType) => {
 
     const mappedTasks = tasks.length
         ? <ul>
@@ -16,6 +18,8 @@ export const Todolist = ({title, tasks, removeTask, changeFilter}: TodolistProps
             ))}
         </ul>
         : <p>Your todolist is empty!</p>
+
+    const changePriorityHandler = (e: ChangeEvent<HTMLSelectElement>) => changePriority(e.currentTarget.value as PriorityType)
 
     return (
         <div>
@@ -26,7 +30,7 @@ export const Todolist = ({title, tasks, removeTask, changeFilter}: TodolistProps
             </div>
             <div>
                 <label htmlFor="priority">Task's priority</label>
-                <select id='priority'>
+                <select id='priority' onChange={changePriorityHandler}>
                     <option value="All">All</option>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>

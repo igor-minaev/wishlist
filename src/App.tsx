@@ -41,6 +41,9 @@ function App() {
     }
 
     const changeFilter = (filter: FilterType) => setFilter(filter)
+
+    const changePriority = (priority: PriorityType) => setPriority(priority)
+
     return (
         <div className="app">
             <Todolist
@@ -48,6 +51,7 @@ function App() {
                 tasks={filteredTasks}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
+                changePriority={changePriority}
             />
         </div>
     )
