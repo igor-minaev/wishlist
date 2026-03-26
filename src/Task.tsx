@@ -1,5 +1,6 @@
 import {TaskType} from "./types/types.ts";
 import {Button} from "./components/Button.tsx";
+import {Input} from "./components/Input.tsx";
 
 type TaskPropsType = TaskType & {
     removeTask: (taskId: string) => void
@@ -10,7 +11,7 @@ export const Task = ({id, title, isDone, priority, removeTask}: TaskPropsType) =
 
     return (
         <li>
-            <input type="checkbox" checked={isDone}/>
+            <Input type="checkbox" checked={isDone}/>
             <span>{title}</span>
             <span> (<i>{priority}</i>) </span>
             <Button onClick={removeTaskHandler} name='x'/>
