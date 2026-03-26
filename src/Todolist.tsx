@@ -1,6 +1,7 @@
 import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 import {Task} from "./Task.tsx";
 import {ChangeEvent, useState} from "react";
+import {Button} from "./components/Button.tsx";
 
 type TodolistPropsType = {
     title: string
@@ -34,7 +35,7 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority
             <h3>{title}</h3>
             <div>
                 <input value={newTitle} onChange={onChangeHandler}/>
-                <button onClick={addTaskHandler}>+</button>
+                <Button onClick={addTaskHandler} name='+'/>
             </div>
             <div>
                 <label htmlFor="priority">Task's priority</label>
@@ -47,9 +48,9 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority
             </div>
             {mappedTasks}
             <div>
-                <button onClick={() => changeFilter('All')}>All</button>
-                <button onClick={() => changeFilter('Active')}>Active</button>
-                <button onClick={() => changeFilter('Completed')}>Completed</button>
+                <Button onClick={() => changeFilter('All')} name='All'/>
+                <Button onClick={() => changeFilter('Active')} name='Active'/>
+                <Button onClick={() => changeFilter('Completed')} name='Completed'/>
             </div>
         </div>
     );
