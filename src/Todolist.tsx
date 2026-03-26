@@ -1,10 +1,24 @@
-import {TaskType} from "./App.tsx";
+import {TaskType} from "./types/types.ts";
 
 type TodolistPropsType = {
     title: string
     tasks: TaskType[]
 }
 export const Todolist = ({title, tasks}: TodolistPropsType) => {
+
+    const mappedTasks = tasks.length
+        ? <ul>
+            {tasks.map(t => (
+                <li key={t.id}>
+                    <input type="checkbox" checked={t.isDone}/>
+                    <span>{t.title}</span>
+                    <span> (<i>{t.priority}</i>) </span>
+                    <button>x</button>
+                </li>
+            ))}
+        </ul>
+        : <p>Your todolist is empty!</p>
+
     return (
         <div>
             <h3>{title}</h3>
@@ -21,16 +35,7 @@ export const Todolist = ({title, tasks}: TodolistPropsType) => {
                     <option value="High">High</option>
                 </select>
             </div>
-            <ul>
-                {tasks.map(t => (
-                    <li key={t.id}>
-                        <input type="checkbox" checked={t.isDone}/>
-                        <span>{t.title}</span>
-                        <span> (<i>{t.priority}</i>) </span>
-                        <button>x</button>
-                    </li>
-                ))}
-            </ul>
+            {mappedTasks}
             <div>
                 <button>All</button>
                 <button>Active</button>

@@ -1,17 +1,9 @@
 import './App.css'
 import {useState} from "react";
 import {Todolist} from "./Todolist.tsx";
+import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 
-export type PriorityType = 'Low' | 'Medium' | 'High' | 'All'
-export type FilterType = 'All' | 'Active' | 'Completed'
 
-export type TaskType = {
-    id: string
-    title: string
-    description: string
-    isDone: boolean
-    priority: PriorityType
-}
 
 const defaultTasks: TaskType[] = [
     {id: crypto.randomUUID(), title: 'HTML', description: "some text", isDone: true, priority: 'Low'},
