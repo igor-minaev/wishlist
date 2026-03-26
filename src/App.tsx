@@ -5,13 +5,13 @@ import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 
 
 const defaultTasks: TaskType[] = [
-    {id: crypto.randomUUID(), title: 'HTML', description: "some text", isDone: true, priority: 'Low'},
-    {id: crypto.randomUUID(), title: 'CSS', description: "some text", isDone: false, priority: 'Low'},
-    {id: crypto.randomUUID(), title: 'JS', description: "some text", isDone: true, priority: 'Medium'},
-    {id: crypto.randomUUID(), title: 'REACT', description: "some text", isDone: true, priority: 'High'},
-    {id: crypto.randomUUID(), title: 'REDUX', description: "some text", isDone: false, priority: 'High'},
-    {id: crypto.randomUUID(), title: 'RTK', description: "some text", isDone: false, priority: 'High'},
-    {id: crypto.randomUUID(), title: 'Vite', description: "some text", isDone: true, priority: 'Medium'}
+    {id: crypto.randomUUID(), title: 'HTML', isDone: true, priority: 'Low'},
+    {id: crypto.randomUUID(), title: 'CSS', isDone: false, priority: 'Low'},
+    {id: crypto.randomUUID(), title: 'JS', isDone: true, priority: 'Medium'},
+    {id: crypto.randomUUID(), title: 'REACT', isDone: true, priority: 'High'},
+    {id: crypto.randomUUID(), title: 'REDUX', isDone: false, priority: 'High'},
+    {id: crypto.randomUUID(), title: 'RTK', isDone: false, priority: 'High'},
+    {id: crypto.randomUUID(), title: 'Vite', isDone: true, priority: 'Medium'}
 ]
 
 const filterTasks = (tasks: TaskType[], filter: FilterType, priority: PriorityType): TaskType[] => {
@@ -44,6 +44,16 @@ function App() {
 
     const changePriority = (priority: PriorityType) => setPriority(priority)
 
+    const addTask = (title: string) => {
+        const newTask: TaskType = {
+            id: crypto.randomUUID(),
+            title,
+            isDone: false,
+            priority: 'Low'
+        }
+        setTasks([newTask, ...tasks])
+    }
+
     return (
         <div className="app">
             <Todolist
@@ -52,6 +62,7 @@ function App() {
                 removeTask={removeTask}
                 changeFilter={changeFilter}
                 changePriority={changePriority}
+                addTask={addTask}
             />
         </div>
     )

@@ -1,6 +1,6 @@
 import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 import {Task} from "./Task.tsx";
-import {ChangeEvent} from "react";
+import {ChangeEvent, useState} from "react";
 
 type TodolistPropsType = {
     title: string
@@ -8,8 +8,11 @@ type TodolistPropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (filter: FilterType) => void
     changePriority: (priority: PriorityType) => void
+    addTask: (title: string) => void
 }
-export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority}: TodolistPropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority, addTask}: TodolistPropsType) => {
+
+    const [newTitle, setNewTitle] = useState('')
 
     const mappedTasks = tasks.length
         ? <ul>
@@ -20,13 +23,18 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, changePriority
         : <p>Your todolist is empty!</p>
 
     const changePriorityHandler = (e: ChangeEvent<HTMLSelectElement>) => changePriority(e.currentTarget.value as PriorityType)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNewTitle(e.currentTarget.value)
+    const addTaskHandler = () => {
+        addTask(newTitle)
+        setNewTitle('')
+    }
 
     return (
         <div>
             <h3>{title}</h3>
             <div>
-                <input/>
-                <button>+</button>
+                <input value={newTitle} onChange={onChangeHandler}/>
+                <button onClick={addTaskHandler}>+</button>
             </div>
             <div>
                 <label htmlFor="priority">Task's priority</label>

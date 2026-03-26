@@ -4,7 +4,7 @@ type TaskPropsType = TaskType & {
     removeTask: (taskId: string) => void
 }
 
-export const Task = ({id, title, isDone, priority, description, removeTask}: TaskPropsType) => {
+export const Task = ({id, title, isDone, priority, removeTask}: TaskPropsType) => {
     const removeTaskHandler = () => removeTask(id)
 
     return (
@@ -13,7 +13,6 @@ export const Task = ({id, title, isDone, priority, description, removeTask}: Tas
             <span>{title}</span>
             <span> (<i>{priority}</i>) </span>
             <button onClick={removeTaskHandler}>x</button>
-            <p>{description}</p>
         </li>
     );
 };
