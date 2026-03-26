@@ -4,7 +4,6 @@ import {Todolist} from "./Todolist.tsx";
 import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 
 
-
 const defaultTasks: TaskType[] = [
     {id: crypto.randomUUID(), title: 'HTML', description: "some text", isDone: true, priority: 'Low'},
     {id: crypto.randomUUID(), title: 'CSS', description: "some text", isDone: false, priority: 'Low'},
@@ -36,9 +35,17 @@ function App() {
     const [priority, setPriority] = useState<PriorityType>('All')
 
     const filteredTasks = filterTasks(tasks, filter, priority)
+
+    const removeTask = (taskId: string) => {
+        setTasks(tasks.filter(t => t.id !== taskId))
+    }
     return (
         <div className="app">
-            <Todolist title='What to learn' tasks={filteredTasks}/>
+            <Todolist
+                title='What to learn'
+                tasks={filteredTasks}
+                removeTask={removeTask}
+            />
         </div>
     )
 }

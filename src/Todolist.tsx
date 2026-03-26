@@ -4,13 +4,14 @@ import {Task} from "./Task.tsx";
 type TodolistPropsType = {
     title: string
     tasks: TaskType[]
+    removeTask: (taskId: string) => void
 }
-export const Todolist = ({title, tasks}: TodolistPropsType) => {
+export const Todolist = ({title, tasks, removeTask}: TodolistPropsType) => {
 
     const mappedTasks = tasks.length
         ? <ul>
             {tasks.map(t => (
-                <Task{...t} key={t.id}/>
+                <Task {...t} key={t.id} removeTask={removeTask}/>
             ))}
         </ul>
         : <p>Your todolist is empty!</p>
