@@ -1,12 +1,13 @@
-import {TaskType} from "./types/types.ts";
+import {FilterType, TaskType} from "./types/types.ts";
 import {Task} from "./Task.tsx";
 
 type TodolistPropsType = {
     title: string
     tasks: TaskType[]
     removeTask: (taskId: string) => void
+    changeFilter: (filter: FilterType) => void
 }
-export const Todolist = ({title, tasks, removeTask}: TodolistPropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter}: TodolistPropsType) => {
 
     const mappedTasks = tasks.length
         ? <ul>
@@ -34,9 +35,9 @@ export const Todolist = ({title, tasks, removeTask}: TodolistPropsType) => {
             </div>
             {mappedTasks}
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={() => changeFilter('All')}>All</button>
+                <button onClick={() => changeFilter('Active')}>Active</button>
+                <button onClick={() => changeFilter('Completed')}>Completed</button>
             </div>
         </div>
     );
