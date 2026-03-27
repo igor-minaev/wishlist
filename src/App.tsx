@@ -1,6 +1,6 @@
 import './App.css'
 import {useState} from "react";
-import {Todolist} from "./Todolist.tsx";
+import {Todolist} from "./components/Todolist/Todolist.tsx";
 import {FilterType, PriorityType, TaskType} from "./types/types.ts";
 
 

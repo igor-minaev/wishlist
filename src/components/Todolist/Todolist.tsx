@@ -1,8 +1,9 @@
-import {FilterType, PriorityType, TaskType} from "./types/types.ts";
-import {Task} from "./Task.tsx";
+import {FilterType, PriorityType, TaskType} from "../../types/types.ts";
+import {Task} from "../../Task.tsx";
 import {ChangeEvent, useState} from "react";
-import {Button} from "./components/Button/Button.tsx";
-import {Input} from "./components/Input.tsx";
+import {Button} from "../Button/Button.tsx";
+import {Input} from "../Input.tsx";
+import s from './Todolist.module.css'
 
 type TodolistPropsType = {
     title: string
@@ -41,7 +42,7 @@ export const Todolist = ({
     }
 
     return (
-        <div>
+        <div className={s.todolist}>
             <h3>{title}</h3>
             <div>
                 <Input value={newTitle} onChange={onChangeHandler}/>
@@ -57,7 +58,7 @@ export const Todolist = ({
                 </select>
             </div>
             {mappedTasks}
-            <div>
+            <div className={s.wrapperBtn}>
                 <Button onClick={() => changeFilter('All')} name='All'/>
                 <Button onClick={() => changeFilter('Active')} name='Active'/>
                 <Button onClick={() => changeFilter('Completed')} name='Completed'/>

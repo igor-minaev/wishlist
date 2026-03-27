@@ -1,0 +1,8 @@
+.todolist {
+    text-align: center;
+}
+
+.wrapperBtn {
+    display: flex;
+    gap: 5px;
+}
