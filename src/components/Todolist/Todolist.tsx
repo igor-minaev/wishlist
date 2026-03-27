@@ -24,7 +24,8 @@ export const Todolist = ({
                              changeTaskStatus
                          }: TodolistPropsType) => {
 
-    const [newTitle, setNewTitle] = useState('')
+    const [newTitle, setNewTitle] = useState<string>('')
+    const [error, setError] = useState<boolean>(false)
 
     const mappedTasks = tasks.length
         ? <ul>
@@ -35,9 +36,17 @@ export const Todolist = ({
         : <p>Your todolist is empty!</p>
 
     const changePriorityHandler = (e: ChangeEvent<HTMLSelectElement>) => changePriority(e.currentTarget.value as PriorityType)
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNewTitle(e.currentTarget.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        error && setError(false)
+        setNewTitle(e.currentTarget.value)
+    }
     const addTaskHandler = () => {
-        addTask(newTitle)
+        const trimmedTitle = newTitle.trim()
+        if (trimmedTitle !== '') {
+            addTask(trimmedTitle)
+        } else {
+            setError(true)
+        }
         setNewTitle('')
     }
 
@@ -48,6 +57,7 @@ export const Todolist = ({
                 <Input value={newTitle} onChange={onChangeHandler}/>
                 <Button onClick={addTaskHandler} name='+'/>
             </div>
+            {error && <p style={{color: "red"}}>Title is required!</p>}
             <div>
                 <label htmlFor="priority">Task's priority</label>
                 <select id='priority' onChange={changePriorityHandler}>
