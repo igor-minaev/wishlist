@@ -1,0 +1,20 @@
+.button {
+    overflow: hidden;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    background-color: #6cdfc3;
+    transition: background-color 0.6s, transform 0.5s;
+}
+
+.button:hover {
+    background-color: #18a585;
+    transform: scale(1.2);
+}
+

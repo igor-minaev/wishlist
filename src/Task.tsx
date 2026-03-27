@@ -1,5 +1,5 @@
 import {TaskType} from "./types/types.ts";
-import {Button} from "./components/Button.tsx";
+import {Button} from "./components/Button/Button.tsx";
 import {Input} from "./components/Input.tsx";
 import {ChangeEvent} from "react";
 
