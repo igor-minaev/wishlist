@@ -18,3 +18,11 @@
     transform: scale(1.2);
 }
 
+.button:disabled {
+    opacity: 0.3;
+    transform: none;
+    background-color: #6cdfc3;
+}
+
+
+

@@ -50,12 +50,14 @@ export const Todolist = ({
         setNewTitle('')
     }
 
+    const disableBtn = newTitle.length < 3
+
     return (
         <div className={s.todolist}>
             <h3>{title}</h3>
             <div>
                 <Input value={newTitle} onChange={onChangeHandler}/>
-                <Button onClick={addTaskHandler} name='+'/>
+                <Button disabled={disableBtn} onClick={addTaskHandler} name='+'/>
             </div>
             {error && <p style={{color: "red"}}>Title is required!</p>}
             <div>
