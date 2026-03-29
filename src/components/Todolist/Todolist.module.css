@@ -6,3 +6,7 @@
     display: flex;
     gap: 5px;
 }
+
+.error {
+    outline: 2px solid red;
+}
